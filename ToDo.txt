@@ -1,0 +1,34 @@
+[IMPLEMENTATION LIST]
+Implement the ship list
+- Implement a ship placement loop to loop through while placing ships
+- Implement checks to ensure the ships can be placed legitimately
+
+Think about how the board will work
+- Hook the board up to record hits in areas and display them
+- Work out board teams and styles to get 4 board instances
+- Store board instances in a board list in Game class
+
+Make a check hit function
+- Use the placed position of the ship and the length and orientation to calculate a hit
+- Record the hit on the attacker's hit board
+- Iterate through the ship list of the opposing player and check each ship for a hit
+    Break loop if ship is hit
+
+
+Tkinter
+- Create an array of buttons from A1 to Z10 (or equivalent size)
+- Hook the buttons up to the fire command
+- Make sure they are all in a grid alignment
+- Add labels around the buttons to indicate the column and the row
+
+----------------------------------------------------------------------------------------------------------------------
+[TESTING]
+Test various ship sizes
+Only enable placement if there is enough room for the ship
+
+
+
+
+----------------------------------------------------------------------------------------------------------------------
+[OVERALL]
+Try and fill out more objectives of the coursework

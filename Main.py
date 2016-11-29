@@ -1,10 +1,12 @@
-import Boat, Gameboard, Attack, Game, TKgui
+import Boat, Gameboard, Attack, Game, Ai
 
 shipList1 = []
 shipList2 = []
+newBoard = Gameboard.Board(10, 10)
+compPlayer = Ai.Computer(1)
 # Main program definition
+
 def main():
-    newBoard = Gameboard.Board(10, 10)
     ship1 = Boat.Ship(1, 3)
     ship2 = Boat.Ship(1, 3)
     ship3 = Boat.Ship(1, 3)

@@ -9,17 +9,26 @@ Think about how the board will work
 - Store board instances in a board list in Game class
 
 Make a check hit function
-- Use the placed position of the ship and the length and orientation to calculate a hit
-- Record the hit on the attacker's hit board
-- Iterate through the ship list of the opposing player and check each ship for a hit
-    Break loop if ship is hit
+- Use the hit information to record a hit on a ship
 
+Make a V.I
+- Make it shoot
+- Make it shoot well
+- Make it destroy you
+
+Main
+- Rearrange where the ships are defined and placed
+- Use game to set up the board object and the ships
+- Just use main to
 
 Tkinter
 - Create an array of buttons from A1 to Z10 (or equivalent size)
 - Hook the buttons up to the fire command
 - Make sure they are all in a grid alignment
 - Add labels around the buttons to indicate the column and the row
+
+
+You can pack / position frames of a GUI class inside of a window to have multiple interfaces on the same screen
 
 ----------------------------------------------------------------------------------------------------------------------
 [TESTING]

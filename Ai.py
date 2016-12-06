@@ -1,5 +1,5 @@
 from random import randint
-import Gameboard, Main, Attack
+import Gameboard, Main, Attack, Game
 
 
 # Declaration of the computer class, with difficulty variable
@@ -17,4 +17,3 @@ class Computer:
 
         if self.difficulty == 2:
             print("Kids like you should just burn in hell")
-

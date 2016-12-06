@@ -97,7 +97,12 @@ def layShipShadow(x, y, orient):
 
 def selectTile(x, y):
     button = buttonDict[str(x)+","+str(y)]
-    button["bg"] = "yellow"
+    changeColour(button)
+
+# Changing colour doesn't work
+def changeColour(self):
+    self.configure(bg = "red")
+
 
 def clearTiles():
     for i in range(1,11):

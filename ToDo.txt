@@ -12,7 +12,6 @@ Make a check hit function
 - Use the hit information to record a hit on a ship
 
 Make a V.I
-- Make it shoot
 - Make it shoot well
 - Make it destroy you
 
@@ -21,12 +20,11 @@ Main
 - Use game to set up the board object and the ships
 - Just use main to
 
-Tkinter
-- Create an array of buttons from A1 to Z10 (or equivalent size)
-- Hook the buttons up to the fire command
-- Make sure they are all in a grid alignment
-- Add labels around the buttons to indicate the column and the row
 
+[NEW THINGS] 21/12/16
+- Erase Tkinter from existence
+- Work on a new ASCII interface
+- Get a main game loop down
 
 You can pack / position frames of a GUI class inside of a window to have multiple interfaces on the same screen
 

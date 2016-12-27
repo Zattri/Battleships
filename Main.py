@@ -1,17 +1,17 @@
-import Boat, Gameboard, Attack, Game, Ai
-
+import Boat, Gameboard, Attack, Ai
+from Game import setShips
 shipList1 = []
 shipList2 = []
 newBoard = Gameboard.Board(10, 10)
 
-# Doesn't work currenlty
+# Doesn't work currently
 # compPlayer = Ai.Computer(1)
-
+#gameInst = Game()
 # Main program definition
 
 def main():
-    global Game
-    Game.setShips(shipList1)
+
+    setShips(shipList1)
     # Board declared properly just used for testing - newBoard.printBoard()
     """
     print("Ship 1")
@@ -21,4 +21,4 @@ def main():
     """
 
 # Runs main program
-main()
+#main()

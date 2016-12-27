@@ -95,13 +95,14 @@ def layShipShadow(x, y, orient):
     lightLen()
 """
 
+# Select tile and changecolour don't work, stop using Tkinter
 def selectTile(x, y):
-    button = buttonDict[str(x)+","+str(y)]
-    changeColour(button)
+    print(buttonDict[str(x)+","+str(y)])
+    buttonDict[str(x)+","+str(y)].configure(background = "red")
 
 # Changing colour doesn't work
-def changeColour(self):
-    self.configure(bg = "red")
+def changeColour(button):
+    button["bg"] = "red"
 
 
 def clearTiles():
@@ -132,7 +133,7 @@ def mainFunc():
     """
 
 # Runs the main function which declares all the ships and the board etc (for now)
-Main.main()
+# Main.main()
 # Main function call inside the GUI class
 mainFunc()
 # First frame that is loaded

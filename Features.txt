@@ -1,0 +1,24 @@
+Method of displaying hits and misses
+Method of placing ships
+Victory / lose conditions in the game, when all of a player's ships are sunk
+Players get another turn after they successfully hit
+Computer attacks around a successful hit until a ship dies
+Game can save and load from a file
+Gameboard size can be selected at the start (will it work with Tkinter?) - Just use a select few sizes, 8x8, 10x10 etc
+
+ Loops -
+ Gameplay loop
+ - Attack loop
+ - Computer turn
+ Overall victory loop - Compare the ship lists
+
+ Ship Placement loop
+ - Player placement
+ - Computer placement (random probably)
+
+
+Tkinter -
+Use 2 grids of set sizes, hard code (probably)
+2 input boxes and a button to attack etc
+Another grid for computer user
+Don't click buttons to attack but just change the attacked button colour

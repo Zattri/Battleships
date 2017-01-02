@@ -21,9 +21,11 @@ frameMenu = Frame(root)
 
 # [==================================================================================================================]
 
-def fireAttack(x, y):
-    # Prints the location of the attack and whether it hit or not
-    print("X:",x,"Y:",y, " - ", Attack.checkHit(Main.shipList1, x, y))
+def fireAttack(x, y, shipList):
+    # Prints the location of the attack and whether it hit or not - For testing
+    print("X:",x,"Y:",y, " - ", Attack.checkHit(shipList, x, y))
+    #Attack.checkHit(shipList, x, y)
+
 
 
 
@@ -49,7 +51,7 @@ def initFGrid():
             loc = str(row) + "," + str(col)
             coordList.append(loc)
             buttonDict[coordList[-1]] = ttk.Button(frameGrid, width = 2)
-            buttonDict[coordList[-1]]["command"] = lambda x = col, y = row: fireAttack(x, y)
+            buttonDict[coordList[-1]]["command"] = lambda x = col, y = row: fireAttack(x, y, Main.shipList1)
             buttonDict[coordList[-1]].grid(row = row + 1, column = col + 1)
 
     # Create a menu button
@@ -95,10 +97,9 @@ def layShipShadow(x, y, orient):
     lightLen()
 """
 
-# Select tile and changecolour don't work, stop using Tkinter
+# Select tile and changeColour don't work, stop using Tkinter
 def selectTile(x, y):
-    print(buttonDict[str(x)+","+str(y)])
-    buttonDict[str(x)+","+str(y)].configure(background = "red")
+    print()
 
 # Changing colour doesn't work
 def changeColour(button):
@@ -133,7 +134,7 @@ def mainFunc():
     """
 
 # Runs the main function which declares all the ships and the board etc (for now)
-# Main.main()
+Main.main()
 # Main function call inside the GUI class
 mainFunc()
 # First frame that is loaded

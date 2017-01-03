@@ -23,23 +23,46 @@ def createFile(filePath, fileName, fileTitle = None):
             fileVar.write(fileTitle + "\n")
         return fileVar
     else:
-        print("File with that name already exists")
+        print("Save file already exists")
 
-def main():
-    #fileVar = open(filePath + fileName, "r")
-    # Open parameters
-    # r - read
-    # w - write
-    # x - create and write
-    # a - append
-    # r+ - read and write
-    #print(fileVar.read())
+def saveFile(team1ships, team2ships):
+    if (os.path.isfile(filePath + "/saveState.txt") == False):
+        saveVar = createFile(filePath, "saveState.txt")
 
-    myFile = createFile(filePath, "iloveyou.txt")
-    closeFile(myFile)
-    appendItem(filePath, "iloveyou.txt", "Hey there sexy")
-    closeFile(myFile)
-    printFile(filePath, "iloveyou.txt")
-    closeFile(myFile)
+        # Write in stats for player 1's ships
+        saveVar.write("Team 1 Ships\n")
+        for ship in team1ships:
+            # Retrieve strings of ship info and write to file
+            shipStrings = ship.stringStats()
+            saveVar.write(shipStrings[0] + "\n")
+            saveVar.write(shipStrings[1] + "\n")
+            saveVar.write(shipStrings[2] + "\n")
 
-main()
+        # Write in stats for player 2's ships
+        saveVar.write("Team 2 Ships\n")
+        for ship in team2ships:
+            # Retrieve strings of ship info and write to file
+            shipStrings = ship.stringStats()
+            saveVar.write(shipStrings[0] + "\n")
+            saveVar.write(shipStrings[1] + "\n")
+            saveVar.write(shipStrings[2] + "\n")
+
+        # Close after use
+        closeFile(saveVar)
+
+    else:
+        print("Save file already exists")
+
+# Do later
+def loadFile():
+    print("Fix me")
+
+#fileVar = open(filePath + fileName, "r")
+# Open parameters
+# r - read
+# w - write
+# x - create and write
+# a - append
+# r+ - read and write
+#print(fileVar.read())
+

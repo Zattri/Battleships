@@ -1,4 +1,4 @@
-import Boat, Gameboard, Attack, Ai
+import Boat, Gameboard, Attack, Ai, fileFuncts
 from Game import setShips
 
 shipList1 = []
@@ -20,6 +20,7 @@ def main():
     ship2.placeShip(5, 5, "e", shipList1)
     ship3 = Boat.Ship(1, 5)
     ship3.placeShip(4, 4, "s", shipList1)
+    fileFuncts.saveFile(shipList1, shipList2)
 
     #setShips(shipList1, shipList2, newBoard)
     # Board declared properly just used for testing - newBoard.printBoard()

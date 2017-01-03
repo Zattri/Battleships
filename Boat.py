@@ -68,4 +68,13 @@ class Ship:
         print("Team:",self.__team)
         print()
 
+    # Used for sending strings back to the save function
+    def stringStats(self):
+        locString = "Loc," + str(self.__xPos) + "," + str(self.__yPos) + "," + self.__orient
+        lenString = "Len," + str(self.__size)
+        hitString = "Hits,"
+        for i in self.__hits:
+            hitString += self.__hits[i]
+
+        return locString, lenString, hitString
 

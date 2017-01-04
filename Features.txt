@@ -3,7 +3,7 @@ Method of placing ships
 Victory / lose conditions in the game, when all of a player's ships are sunk
 Players get another turn after they successfully hit
 Computer attacks around a successful hit until a ship dies
-Game can save and load from a file
+Game can load from a file
 Gameboard size can be selected at the start (will it work with Tkinter?) - Just use a select few sizes, 8x8, 10x10 etc
 
  Loops -

@@ -9,7 +9,7 @@ def checkHit(shipList, xPos, yPos):
                 # Get the location of the hit on the ship
                 hitLocation = yPos - (ship.getLoc()[1] + 1)
                 # For testing
-                print("Hit:", hitLocation)
+                #print("Hit:", hitLocation)
                 ship.takeHit(hitLocation, shipList)
                 # If hit is true, break check loop
                 hitStatus = True
@@ -21,7 +21,7 @@ def checkHit(shipList, xPos, yPos):
                 # Get the location of the hit on the ship
                 hitLocation = (xPos - ship.getLoc()[0])
                 # For testing
-                print("Hit:", hitLocation)
+                #print("Hit:", hitLocation)
                 ship.takeHit(hitLocation, shipList)
                 # If hit is true, break check loop
                 hitStatus = True
@@ -33,7 +33,7 @@ def checkHit(shipList, xPos, yPos):
                 # Get the location of the hit on the ship
                 hitLocation = (yPos - ship.getLoc()[1])
                 # For testing
-                print("Hit:", hitLocation)
+                #print("Hit:", hitLocation)
                 ship.takeHit(hitLocation, shipList)
                 # If hit is true, break check loop
                 hitStatus = True
@@ -45,7 +45,7 @@ def checkHit(shipList, xPos, yPos):
                 # Get the location of the hit on the ship
                 hitLocation = (xPos - ship.getLoc()[0] + 1)
                 # For testing
-                print("Hit:", hitLocation)
+                #print("Hit:", hitLocation)
                 ship.takeHit(hitLocation, shipList)
                 # If hit is true, break check loop
                 hitStatus = True

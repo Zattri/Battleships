@@ -38,7 +38,15 @@ class Ship:
             print("Player 1 has lost", shipType[self.__size - 1])
         else:
             print("Player 2 has lost", shipType[self.__size - 1])
+        shipTeam = self.getTeam()
         shipList.remove(self)
+        if (shipList == []):
+            if (shipTeam == 1):
+                print("Player 2 has won the match!")
+
+            else:
+                print("Player 1 has won the match!")
+
 
     # Gets the location of this ship
     def getLoc(self):
@@ -55,6 +63,9 @@ class Ship:
     # Get the size of the ship
     def getSize(self):
         return self.__size
+
+    def getName(self):
+        return shipType[self.__size - 1]
 
     # Get ship orientation
     def getOrient(self):
@@ -77,4 +88,3 @@ class Ship:
             hitString += self.__hits[i]
 
         return locString, lenString, hitString
-

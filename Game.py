@@ -20,13 +20,13 @@ def setShips(shipList1, shipList2, board):
 
     # Team 1 Ships input
     print("Team 1 place your ships")
-    for ship in [ship1, ship2, ship3, ship4]:
+    for ship in [ship1, ship2]:
         shipInputLoop(shipList1, ship, board)
 
     # Team 2 Ships input
-    #print("Team 2 place your ships")
-    #for ship in [ship6, ship7]:
-    #    shipInputLoop(shipList2, ship, board)
+    print("Team 2 place your ships")
+    for ship in [ship6, ship7]:
+        shipInputLoop(shipList2, ship, board)
 
 
 # Input loop for entering ships onto the grid

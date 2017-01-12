@@ -1,9 +1,7 @@
 Players get another turn after they successfully hit
-Computer attacks around a successful hit until a ship dies
+Computer attacks around a successful hit until a ship dies - Maybe
 Game can load from a file - need to colour squares of where hit
-Computer thinking thing? - 2 seconds of lag?
-Add in additional grid, and menu button
-Hook up additional grid to work with board size
+Computer thinking thing? - Use time library and time.sleep(seconds) to wait an x amount of seconds
 
 
  Loops -
@@ -11,11 +9,3 @@ Hook up additional grid to work with board size
  - Attack loop
  - Computer turn
  Overall victory loop - Compare the ship lists
-
- Ship Placement loop
- - Player placement
- - Computer placement (random probably)
-
-
-Tkinter -
-Another grid for computer user

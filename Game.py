@@ -1,6 +1,4 @@
-# Make instance of game
-# Add ship list to instance
-import Boat, Gameboard, Attack, Ai
+import Boat
 
 def setShips(shipList1, shipList2, board):
     # Declare ships for Team 1

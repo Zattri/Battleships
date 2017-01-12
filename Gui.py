@@ -1,6 +1,8 @@
 from tkinter import *
 from tkinter import ttk
-import Attack, Main, Ai
+from fileFuncts import saveFile
+from random import randint
+import Attack, Main
 
 # Global declarations
 labelList = []
@@ -27,6 +29,26 @@ def fireAttack(button, x, y, shipList):
         changeColour(button, "red")
     else:
         changeColour(button, "grey")
+
+# Computer attack function
+def compAttack(colList):
+    allowAttack = False
+    # Repeat the attack until an untargeted square is selected
+    while allowAttack == False:
+        randXPos = randint(1, boardSize)
+        randYPos = randint(1, boardSize)
+
+        atkColList = colList[randXPos-1]
+        attackButton = atkColList[randYPos-1]
+        # Allow the attack if the square has not been targeted before
+        if (attackButton["bg"] == "blue"):
+            allowAttack = True
+
+        # Fire the attack
+        if allowAttack == True:
+            fireAttack(attackButton, randXPos, randYPos, Main.shipList2)
+
+
 
 def raiseFrame(frame):
     frame.tkraise()
@@ -67,7 +89,8 @@ def mainFunc():
 def initBattleGrid1():
     # Adds menu buttons and an AI fire button
     Button(frameGrid1, text="Menu", command=lambda: raiseFrame(frameMenu)).grid(row=13, column=23)
-    Button(frameGrid1, text="AI", command=lambda: Main.compPlayer.fireShot()).grid(row=13, column=24)
+    Button(frameGrid1, text="AI", command=lambda: compAttack(p2colsList)).grid(row=13, column=24)
+    Button(frameGrid1, text="Save Game", command=lambda: saveFile(Main.shipList1, Main.shipList2)).grid(row=13, column=25)
 
     # Adds division labels
     for i in range(1,boardSize+1):

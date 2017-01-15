@@ -2,19 +2,25 @@ import os
 # Global file path - Change as needed
 filePath = "/users/Zattri/Desktop/"
 
+# The names of all these functions are pretty self-explanatory as to what they do
+
+
 def closeFile(fileVar):
     if (fileVar != None):
         fileVar.close()
     else:
         print("File is not open or does not exist")
 
+
 def printFile(filePath, fileName):
     fileVar = open(filePath + fileName, "r")
     print(fileVar.read())
 
+
 def appendItem(filePath, fileName, newItem):
     fileVar = open(filePath + fileName, "a")
     fileVar.write(newItem+"\n")
+
 
 def createFile(filePath, fileName, fileTitle = None):
     if (os.path.isfile("./" + fileName) == False):
@@ -24,6 +30,7 @@ def createFile(filePath, fileName, fileTitle = None):
         return fileVar
     else:
         print("Save file already exists")
+
 
 def saveFile(team1ships, team2ships):
     if (os.path.isfile(filePath + "/saveState.txt") == False):
@@ -57,12 +64,11 @@ def saveFile(team1ships, team2ships):
 def loadFile():
     print("Fix me")
 
-#fileVar = open(filePath + fileName, "r")
 # Open parameters
 # r - read
 # w - write
 # x - create and write
 # a - append
 # r+ - read and write
-#print(fileVar.read())
+
 

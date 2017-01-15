@@ -1,4 +1,5 @@
 class Board:
+    # Define the board giving it a height and width
     def __init__(self, height, width):
         self.__height = height
         self.__width = width

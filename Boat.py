@@ -23,8 +23,6 @@ class Ship:
         if (location not in self.__hits):
             self.__hits.append(location)
             self.checkAlive(shipList)
-        else:
-            print("You have already attacked that location")
 
     # Validates whether the ship is still alive after a hit, if not it declares that it was sunk and removes it from the list
     def checkAlive(self, shipList):
@@ -40,6 +38,7 @@ class Ship:
             print("Player 2 has lost", shipType[self.__size - 1])
         shipTeam = self.getTeam()
         shipList.remove(self)
+        # If after removal a shiplist contains no ships, there is a winner
         if (shipList == []):
             if (shipTeam == 1):
                 print("Player 2 has won the match!")
@@ -81,10 +80,13 @@ class Ship:
 
     # Used for sending strings back to the save function
     def stringStats(self):
+        # Ships location
         locString = "Loc," + str(self.__xPos) + "," + str(self.__yPos) + "," + self.__orient
+        # Length of the ship
         lenString = "Len," + str(self.__size)
+        # The location of any hits the ship took
         hitString = "Hits,"
         for i in self.__hits:
-            hitString += self.__hits[i]
+            hitString += str(self.__hits[i])
 
         return locString, lenString, hitString

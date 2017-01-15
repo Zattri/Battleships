@@ -18,17 +18,21 @@ def setShips(shipList1, shipList2, board):
 
     # Team 1 Ships input
     print("Team 1 place your ships")
-    for ship in [ship1, ship2]:
+    for ship in [ship1, ship2, ship3, ship4, ship5]:
         shipInputLoop(shipList1, ship, board)
 
     # Team 2 Ships input
     print("Team 2 place your ships")
-    for ship in [ship6, ship7]:
+    for ship in [ship6, ship7, ship8, ship9, ship10]:
         shipInputLoop(shipList2, ship, board)
 
 
 # Input loop for entering ships onto the grid
 def shipInputLoop(shipList, ship, board):
+    # Global x and y values for the intended ship position
+    global xPos
+    global yPos
+
     print("Now placing - " + str(ship.getName()) + " [" + str(ship.getSize()) + "]")
     # Outer loop - break after successfully placing a ship
     while True:
@@ -41,6 +45,7 @@ def shipInputLoop(shipList, ship, board):
                 break
 
         if orient == "n":
+            # Try except loop for x input, checks whether it is on the board and is an integer value or not
             while True:
                 try:
                     xPos = int(input("X position: "))
@@ -52,11 +57,12 @@ def shipInputLoop(shipList, ship, board):
                 except ValueError:
                     print("Entered value is not an integer within the board size")
 
+            # Try except loop for y input, checks whether it is on the board and is an integer value or not
             while True:
                 try:
                     yPos = int(input("Y position: "))
                     if ((yPos - ship.getSize() < 0) or (yPos > board.getHeight())):
-                        print("Position is not on the board")
+                        print("The ship is not fully positioned on the board")
                     else:
                         break
 
@@ -80,7 +86,7 @@ def shipInputLoop(shipList, ship, board):
                 try:
                     yPos = int(input("Y position: "))
                     if ((yPos <= 0) or (yPos > board.getHeight())):
-                        print("Position is not on the board")
+                        print("The ship is not fully positioned on the board")
                     else:
                         break
 
@@ -104,7 +110,7 @@ def shipInputLoop(shipList, ship, board):
                 try:
                     yPos = int(input("Y position: "))
                     if ((yPos <= 0) or (yPos + ship.getSize() > board.getHeight() + 1)):
-                        print("Position is not on the board")
+                        print("The ship is not fully positioned on the board")
                     else:
                         break
 
@@ -128,7 +134,7 @@ def shipInputLoop(shipList, ship, board):
                 try:
                     yPos = int(input("Y position: "))
                     if ((yPos <= 0) or (yPos > board.getHeight())):
-                        print("Position is not on the board")
+                        print("The ship is not fully positioned on the board")
                     else:
                         break
 
@@ -137,10 +143,9 @@ def shipInputLoop(shipList, ship, board):
 
         # Check spaces around selected ship location
         shipSize = ship.getSize()
+        # If the space the ship will occupy is clear and on the board, the ship is placed
         if (checkSpace(shipList, board, xPos, yPos, orient, shipSize) == True):
             ship.placeShip(xPos, yPos, orient, shipList)
-            # For testing
-            #ship.printStats()
             break
 
         else:
@@ -150,9 +155,10 @@ def shipInputLoop(shipList, ship, board):
 # Checks the spaces around a location for ships, or if the ship will go off the edge
 def checkSpace(shipList, board, x, y, orient, size):
     canPlace = True
-
     if (orient == "n"):
-        for i in range(y, (y - size)):
+        # Check along the length of the ship to see if it collides with any other ship
+        # If it does not collide it can be placed
+        for i in range((y - size), y):
             if (checkColision(shipList, x, i) == True):
                 canPlace = False
 
@@ -167,20 +173,18 @@ def checkSpace(shipList, board, x, y, orient, size):
                 canPlace = False
 
     elif (orient == "w"):
-        for i in range(x, (x - size)):
+        for i in range((x - size), x):
             if (checkColision(shipList, i, y) == True):
                 canPlace = False
-
-    # For testing
-    # print("Placement -", canPlace)
     return canPlace
 
-# Checks whether a ship will colide with another when placed
+# Checks whether a ship will collide with another when placed
 def checkColision(shipList, xPos, yPos):
     hitStatus = False
     for i in range(len(shipList)):
         ship = shipList[i]
-        # Check the orientation of the ship and if the hit is in the range of the length of the ship
+        # Check the orientation of the ship and if there is a collision in the along the length of the ship
+        # Return true if there is a collision
         if ship.getOrient().lower() == "n":
             if (ship.getLoc()[0] == xPos) and (
                 yPos in range(ship.getLoc()[1] - ship.getSize() + 1, ship.getLoc()[1] + 1)):

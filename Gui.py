@@ -2,39 +2,68 @@ from tkinter import *
 from tkinter import ttk
 from fileFuncts import saveFile
 from random import randint
+from time import sleep
+from sys import stdout
 import Attack, Main
+
+
 
 # Global declarations
 labelList = []
 coordList = []
 divisionList = []
 buttonDict = {}
-boardSize = 10
+boardSize = 8
 
 # Root declaration
 root = Tk()
 
 # Frame declarations
-framePlace = Frame(root)
 frameGrid1 = Frame(root)
-frameGrid2 = Frame(root)
 frameMenu = Frame(root)
+
 
 # [==================================================================================================================]
 
 def fireAttack(button, x, y, shipList):
-    # Prints the location of the attack and whether it hit or not - For testing
-    #print("X:",x,"Y:",y, " - ", Attack.checkHit(shipList, x, y))
+    global turnLabel
+    global attackLabel
     if (Attack.checkHit(shipList, x, y) == True):
         changeColour(button, "red")
+        attackLabel["text"] = "Attack Again!"
     else:
         changeColour(button, "grey")
+        if shipList == Main.shipList1:
+            turnLabel["text"] = "Player 2's turn"
+            attackLabel["text"] = ""
+        else:
+            turnLabel["text"] = "Player 1's turn"
+            attackLabel["text"] = ""
 
 # Computer attack function
 def compAttack(colList):
+    # Computer "Thinking" time - This shouldn't be an objective please remove it, it's too easy to implement,
+    # pointless and slows the game down so much.
+    stdout.write("Thinking")
+    stdout.flush()
+    sleep(0.5)
+    stdout.write(".")
+    stdout.flush()
+    sleep(0.5)
+    stdout.write(".")
+    stdout.flush()
+    sleep(0.5)
+    stdout.write(".")
+    stdout.flush()
+    sleep(0.5)
+    print(" Done")
+
     allowAttack = False
-    # Repeat the attack until an untargeted square is selected
+    # Repeat the attack until an un-targeted square is selected
     while allowAttack == False:
+        global randXPos
+        global randYPos
+        global attackButton
         randXPos = randint(1, boardSize)
         randYPos = randint(1, boardSize)
 
@@ -43,54 +72,73 @@ def compAttack(colList):
         # Allow the attack if the square has not been targeted before
         if (attackButton["bg"] == "blue"):
             allowAttack = True
+            fireAttack(attackButton, randYPos, randXPos, Main.shipList2)
 
-        # Fire the attack
-        if allowAttack == True:
-            fireAttack(attackButton, randXPos, randYPos, Main.shipList2)
+    if attackButton["bg"] == "red":
+        print("Computer hit, attacking again!")
+        compAttack(colList)
 
 
-
+# Raises the chosen frame
 def raiseFrame(frame):
     frame.tkraise()
+
 
 # Changing colour doesn't work
 def changeColour(button, colour):
     button["bg"] = str(colour)
+
 
 # Alters the size of the board
 def changeBoardSize(value):
     global boardSize
     boardSize = value
     print("Board size changed to",boardSize)
+
+
+# Start game procedure that raises the battlegrid frame
+def startGame():
     initBattleGrid1()
+    raiseFrame(frameGrid1)
+
 
 # Create the menu frame
 def initMenu():
-    Button(frameMenu, text="Attack Grid", command=lambda:raiseFrame(frameGrid1)).pack()
-    Button(frameMenu, text="Ship Placement", command=lambda:raiseFrame(framePlace)).pack()
-    Button(frameMenu, text="Size 8", command=lambda:changeBoardSize(8)).pack()
-    Button(frameMenu, text="Size 10", command=lambda:changeBoardSize(10)).pack()
+    Button(frameMenu, text="Start Game", width=15, height=5, command=lambda:startGame()).pack()
+    Button(frameMenu, text="Size 8", width=15, height=5, command=lambda:changeBoardSize(8)).pack()
+    Button(frameMenu, text="Size 10", width=15, height=5, command=lambda:changeBoardSize(10)).pack()
 
 
 # Defines main running function for GUI
 def mainFunc():
-    # Set the frames to the base grid, give padding and a title to each frame
-    for frame in (frameGrid1, frameGrid2, frameMenu, framePlace):
-        frame.grid(row=0, column=0, sticky='news', padx = 10, pady = 10)
-        frame.master.title("Battleships")
+    # Initialise the battlegrid frame
+    frameGrid1.grid(row=0, column=0, sticky='news', padx = 10, pady = 10)
+    frameGrid1.master.title("Battleships")
 
-
-    # Initialise all the frames
-    initBattleGrid1()
+    # Initialise menu frame
+    frameMenu.grid(row=0, column=0, sticky='news', padx = 100, pady = 50)
+    frameMenu.master.title("Battleships")
     initMenu()
 
 
-# Define the main battlegrid frame
+# Define the battlegrid frame
 def initBattleGrid1():
+    # Declare global variables so they can be used in other functions to change turns
+    global turnLabel
+    global attackLabel
+
     # Adds menu buttons and an AI fire button
     Button(frameGrid1, text="Menu", command=lambda: raiseFrame(frameMenu)).grid(row=13, column=23)
-    Button(frameGrid1, text="AI", command=lambda: compAttack(p2colsList)).grid(row=13, column=24)
-    Button(frameGrid1, text="Save Game", command=lambda: saveFile(Main.shipList1, Main.shipList2)).grid(row=13, column=25)
+    Button(frameGrid1, text="AI", command=lambda: compAttack(p2colsList)).grid(row=14, column=23)
+    Button(frameGrid1, text="Save Game", command=lambda: saveFile(Main.shipList1, Main.shipList2)).grid(row=15, column=23)
+
+    # Turn label to indicate who's turn it is
+    turnLabel = Label(frameGrid1, text="Player 1\'s turn")
+    turnLabel.grid(row=4, column=24)
+
+    # Label to indicate whether a player should attack again
+    attackLabel = Label(frameGrid1, text="")
+    attackLabel.grid(row=5, column=24)
 
     # Adds division labels
     for i in range(1,boardSize+1):

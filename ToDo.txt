@@ -1,2 +1,0 @@
-Add ships back into placement loop
-Run through game and check it plays
